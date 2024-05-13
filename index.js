@@ -43,9 +43,7 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
       cardContainer.appendChild(h3Title);
       cardContainer.appendChild(h3Des);
 
-      const svgcontainer=document.getElementById("svgcontainer")
-
-      svgcontainer.appendChild(cardContainer)
+     document.getElementById("svgcontainer").appendChild(cardContainer)
     });
   } catch (error) {
     console.log("fetch error2");
