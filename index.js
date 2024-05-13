@@ -8,18 +8,18 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
 
     const data = await res.json();
 
-    const names = data.map((country) => country.name).join("\n");
-    const flags = data.map((country) => country.flag).join("\n");
-    const natives = data.map((country) => country.nativeName).join("\n");
+    const title = data.map((game) => game.title).join("\n");
+    const thumbnail = data.map((game) => game.thumbnail).join("\n");
+    const short_description = data.map((game) => game.short_description).join("\n");
 
-    const arrNames = names.split("\n");
-    const arrFlags = flags.split("\n");
-    const arrNative = natives.split("\n");
+    const arrTitle = title.split("\n");
+    const arrThumbnail = thumbnail.split("\n");
+    const arrShort_description = short_description.split("\n");
 
     const arrGame = [];
 
     for (let i = 0; i < arrGame.length; i++) {
-      arrGame.push(new gameClass(arrNames[i], arrFlags[i], arrNative[i]));
+      arrGame.push(new gameClass(arrTitle[i], arrThumbnail[i], arrShort_description[i]));
     }
     arrGame.forEach((url) => {
       const cardContainer = document.createElement("div");
@@ -28,20 +28,24 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
       cardContainer.style.margin = "10%";
 
       const imgElement = document.createElement("img");
-      imgElement.src = url.flag;
+      imgElement.src = url.thumbnail;
       imgElement.alt = "svg image";
       imgElement.width = 100;
       imgElement.height = 100;
 
-      const h3Names = document.createElement("h3");
-      h3Names.innerText = url.name;
+      const h3Title = document.createElement("h3");
+      h3Title.innerText = url.title;
 
-      const h3Native = document.createElement("h3");
-      h3Native.innerText = url.native;
+      const h3Des = document.createElement("h3");
+      h3Des.innerText = url.short_description;
 
       cardContainer.appendChild(imgElement);
-      cardContainer.appendChild(h3Names);
-      cardContainer.appendChild(h3Native);
+      cardContainer.appendChild(h3Title);
+      cardContainer.appendChild(h3Des);
+
+      const svgcontainer=document.getElementById("svgcontainer")
+
+      svgcontainer.appendChild(cardContainer)
     });
   } catch (error) {
     console.log("fetch error2");

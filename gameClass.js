@@ -1,35 +1,35 @@
 class gameClass {
-  #name;
-  #flag;
-  #native;
+  #title;
+  #thumbnail;
+  #short_description;
 
   constructor(name, flag, native) {
-    this.name = name;
-    this.flag = flag;
-    this.native = native;
+    this.title = this.title;
+    this.thumbnail = this.thumbnail;
+    this.short_description = this.short_description;
   }
 
-  get native() {
-    return this.#native;
+  get short_description() {
+    return this.short_description;
   }
 
-  get name() {
-    return this.#name;
+  get title() {
+    return this.#title;
   }
 
-  get flag() {
-    return this.#flag;
+  get thumbnail() {
+    return this.#thumbnail;
   }
 
-  set name(newName) {
-    this.#name = newName;
+  set title(value) {
+    this.#title = value;
   }
 
-  set native(newNative) {
-    this.#native = newNative;
+  set short_description(value) {
+    this.#short_description = value;
   }
 
-  set flag(newFlag) {
-    this.#flag = newFlag;
+  set thumbnail(value) {
+    this.#thumbnail = value;
   }
 }
