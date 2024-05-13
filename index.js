@@ -1,34 +1,49 @@
 document.getElementById("fetchButton").addEventListener("click", async () => {
   try {
-    // Make a GET request to the Node.js server
+    const res = await fetch("http://localhost:3000/games");
 
-    const response = await fetch("http://localhost:3000/countries");
-
-    // Check if the request was successful (status code 200)
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    if (!res.ok) {
+      throw new Error(`http error status ${res.status}`);
     }
 
-    // Parse the response JSON
-    const data = await response.json();
-    counter = 0;
+    const data = await res.json();
 
-    // Extract names and flags
-    //   const names = data.map(country => country.name).join('\n');
-
-    data.map((country) => {
-      document.getElementById("nameTextArea").value +=
-        counter + " " + country.name + "\n";
-      counter++;
-    });
-
+    const names = data.map((country) => country.name).join("\n");
     const flags = data.map((country) => country.flag).join("\n");
+    const natives = data.map((country) => country.nativeName).join("\n");
 
-    // Update text areas
-    //    document.getElementById('nameTextArea').value = names;
-    document.getElementById("flagsTextArea").value = flags;
+    const arrNames = names.split("\n");
+    const arrFlags = flags.split("\n");
+    const arrNative = natives.split("\n");
+
+    const arrCauntry = [];
+
+    for (let i = 0; i < arrCauntry.length; i++) {
+      arrCauntry.push(new countryClass(arrNames[i], arrFlags[i], arrNative[i]));
+    }
+    arrCauntry.forEach((url) => {
+      const cardContainer = document.createElement("div");
+      cardContainer.classList.add("card");
+
+      cardContainer.style.margin = "10%";
+
+      const imgElement = document.createElement("img");
+      imgElement.src = url.flag;
+      imgElement.alt = "svg image";
+      imgElement.width = 100;
+      imgElement.height = 100;
+
+      const h3Names = document.createElement("h3");
+      h3Names.innerText = url.name;
+
+      const h3Native = document.createElement("h3");
+      h3Native.innerText = url.native;
+
+      cardContainer.appendChild(imgElement);
+      cardContainer.appendChild(h3Names);
+      cardContainer.appendChild(h3Native);
+    });
   } catch (error) {
-    // Handle any errors that occurred during the fetch
-    console.error("Fetch error:", error);
+    console.log("fetch error2");
   }
 });
