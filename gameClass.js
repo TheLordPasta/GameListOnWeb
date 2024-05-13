@@ -3,14 +3,14 @@ class gameClass {
   #thumbnail;
   #short_description;
 
-  constructor(name, flag, native) {
-    this.title = this.title;
-    this.thumbnail = this.thumbnail;
-    this.short_description = this.short_description;
+  constructor(title, thumbnail, short_description) {
+    this.title = title;
+    this.thumbnail = thumbnail;
+    this.short_description = short_description;
   }
 
   get short_description() {
-    return this.short_description;
+    return this.#short_description;
   }
 
   get title() {

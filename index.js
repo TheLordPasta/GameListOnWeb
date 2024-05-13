@@ -10,7 +10,9 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
 
     const title = data.map((game) => game.title).join("\n");
     const thumbnail = data.map((game) => game.thumbnail).join("\n");
-    const short_description = data.map((game) => game.short_description).join("\n");
+    const short_description = data
+      .map((game) => game.short_description)
+      .join("\n");
 
     const arrTitle = title.split("\n");
     const arrThumbnail = thumbnail.split("\n");
@@ -18,8 +20,10 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
 
     const arrGame = [];
 
-    for (let i = 0; i < arrGame.length; i++) {
-      arrGame.push(new gameClass(arrTitle[i], arrThumbnail[i], arrShort_description[i]));
+    for (let i = 0; i < arrTitle.length; i++) {
+      arrGame.push(
+        new gameClass(arrTitle[i], arrThumbnail[i], arrShort_description[i])
+      );
     }
     arrGame.forEach((url) => {
       const cardContainer = document.createElement("div");
@@ -43,7 +47,7 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
       cardContainer.appendChild(h3Title);
       cardContainer.appendChild(h3Des);
 
-     document.getElementById("svgcontainer").appendChild(cardContainer)
+      document.getElementById("svgcontainer").appendChild(cardContainer);
     });
   } catch (error) {
     console.log("fetch error2");
