@@ -16,12 +16,12 @@ document.getElementById("fetchButton").addEventListener("click", async () => {
     const arrFlags = flags.split("\n");
     const arrNative = natives.split("\n");
 
-    const arrCauntry = [];
+    const arrGame = [];
 
-    for (let i = 0; i < arrCauntry.length; i++) {
-      arrCauntry.push(new countryClass(arrNames[i], arrFlags[i], arrNative[i]));
+    for (let i = 0; i < arrGame.length; i++) {
+      arrGame.push(new gameClass(arrNames[i], arrFlags[i], arrNative[i]));
     }
-    arrCauntry.forEach((url) => {
+    arrGame.forEach((url) => {
       const cardContainer = document.createElement("div");
       cardContainer.classList.add("card");
 
